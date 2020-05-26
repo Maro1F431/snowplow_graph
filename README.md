@@ -1,0 +1,4 @@
+# Snowplow
+
+Dependancies :
+- `libspatialindex`
