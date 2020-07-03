@@ -2,6 +2,28 @@
 import networkx as nx
 
 
+def degree(node, adjList):
+    deg_count = 0
+    for pair in adjList:
+        if node in pair[:2]:
+            deg_count += 1
+    return deg_count
+
+def in_degree(node, adjList):
+    deg_count = 0
+    for pair in adjList:
+        if node == pair[1]:
+            deg_count += 1
+    return deg_count
+
+def out_degree(node, adjList):
+    deg_count = 0
+    for pair in adjList:
+        if node == pair[0]:
+            deg_count += 1
+    return deg_count
+
+
 # Undirected = MultiGraph
 def solveNxUndir(g):
     # Store nodes having incidence degree that is odd
@@ -61,7 +83,7 @@ def solveNxUndir(g):
 #Directed
 def solveNxDir(g):
     while (not nx.is_eulerian(g)):
-       # Store nodes having incidence degree that is odd
+       # Store nodes having incidence degree that is different from out degree
         nodesHigherOut = []
         nodesHigherIn = []
         for node in g.nodes():
