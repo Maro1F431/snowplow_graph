@@ -56,8 +56,7 @@ def eulerize_directed_weighted(G):
     return G
 
 
-
-def montreal_snow_path(district):
+def montreal_snow_path(district, is_directed):
     # Download graph of district from OSM
     graph = ox.graph_from_place(district + ", Montreal, Canada",
                                 network_type='drive', truncate_by_edge=True)
@@ -71,7 +70,11 @@ def montreal_snow_path(district):
 
     # Transform the graph into an eulerian graph
 
-    result = eulerize_directed_weighted(g_proj)
+    if (not is_directed):
+        result = g_proj.to_undirected(g_proj)
+        result = nx.eulerize(result)
+    else:
+        result = eulerize_directed_weighted(g_proj)
 
     # Find an eulerian circuit, and build the list of tuples 'latitude',
     #                                                        'longitude'
