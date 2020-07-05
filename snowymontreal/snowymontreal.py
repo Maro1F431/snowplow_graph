@@ -90,7 +90,7 @@ def montreal_snow_path(district, is_directed):
                         g_proj.nodes[edge[1]]['lon']))
         i += 1
 
-    with open('path.csv', 'w') as file:
+    with open(district + '.csv', 'w') as file:
         writer = csv.writer(file)
 
         writer.writerow(["Index", "Latitude", "Longitude"])
