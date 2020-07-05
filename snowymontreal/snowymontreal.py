@@ -191,7 +191,7 @@ def solve(is_oriented, num_vertices, edge_list):
     else:
         g = eulerize_directed_weighted(g)
 
-    it = nx.eulerian_circuit(g)
+    it = nx.eulerian_path(g)
     path = []
     for edge in it:
         path.append(edge)
