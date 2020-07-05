@@ -1,4 +1,8 @@
-# Snowplow - Path calculator
+# snowymontreal - Path calculator
+
+## Contents
+
+You will find two Jupyter notebooks describing the usage of the `montreal_snow_path` command as well as the `solve` command for our package.
 
 ## Dependancies
 - `pip` requirements in the `requirements.txt` file
@@ -6,8 +10,9 @@
 
 ## Usage
 
-Load the library with `import snowymontreal.snowymontreal`.
+Load the library with `import snowymontreal`.
 Inside the library you will find a function `montreal_snow_path` that takes as arguments :
+
 - `district`, the name of one of Montreal's districts, which can be any of those:
     - Ahuntsic-Cartierville
     - Anjou
