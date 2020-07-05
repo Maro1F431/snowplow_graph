@@ -177,18 +177,33 @@ class Graph():
 
 def solve(is_oriented, num_vertices, edge_list):
     g = nx.MultiGraph()
+    if (is_oriented):
+        g = nx.MultiDiGraph()
     twoEdgeList = []
 
     for edge in edge_list:
-        g.add_edge(edge[0], edge[1], weight=edge[2])
-        twoEdgeList.append(edge[0], edge[1])
+        g.add_edge(edge[0], edge[1], length=edge[2])
+        pair = (edge[0], edge[1])
+        twoEdgeList.append(pair)
 
     if (not is_oriented):
-        path = solveNxUndir(g)
+        g = nx.eulerize(g)
     else:
-        path = solveNxDir(g)
+        g = eulerize_directed_weighted(g)
 
-    for i in range(len(path)):
-        path[i] = twoEdgeList.index(path[i])
+    it = nx.eulerian_circuit(g)
+    path = []
+    for edge in it:
+        path.append(edge)
+
+    if not is_oriented:
+        for i in range(len(path)):
+            if path[i] in twoEdgeList:
+                path[i] = twoEdgeList.index(path[i])
+            else:
+                path[i] = twoEdgeList.index((path[i][1], path[i][0]))
+    else:
+        for i in range(len(path)):
+            path[i] = twoEdgeList.index(path[i])
 
     return path
